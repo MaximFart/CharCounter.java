@@ -3,23 +3,26 @@ package com.foxminded.service;
 import java.util.HashMap;
 
 public class CharCounter {
-    public HashMap<Character, Integer> charactersMap;
+     private CharCounterCache cache;
 
-    public CharCounter() {
-        this.charactersMap = new HashMap<>();
+    public CharCounter(CharCounterCache cache) {
+        this.cache = cache;
     }
 
-    public void readingCharacters(String string) {
+    public HashMap<Character, Integer> readingCharacters(String string) {
+        if (cache.checkResult(string) != null) {
+            return cache.getMap();
+        }
         char[] charArray = string.toCharArray();
         int defaultValue = 1;
         for (int i = 0; i < charArray.length; i++) {
-            if (!charactersMap.containsKey(charArray[i])) {
-                charactersMap.put(charArray[i], defaultValue);
+            if (!cache.getMap().containsKey(charArray[i])) {
+                cache.getMap().put(charArray[i], defaultValue);
             } else {
-                charactersMap.put(charArray[i], charactersMap.get(charArray[i]) + 1);
+                cache.getMap().put(charArray[i], cache.getMap().get(charArray[i]) + 1);
             }
         }
 
-        System.out.println(charactersMap);
+        return cache.getMap();
     }
 }
