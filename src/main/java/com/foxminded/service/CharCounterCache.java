@@ -10,23 +10,36 @@ public class CharCounterCache implements ICharCounterCache {
     }
 
     @Override
-    public HashMap<Character, Integer> checkResult(String str) {
+    public boolean isCached(String string) {
         if (charactersMap.isEmpty()) {
-            return null;
+            return false;
         }
-        char[] strArray = str.toCharArray();
-        for (int i = 0; i < strArray.length; i++) {
-            if (charactersMap.containsKey(strArray[i])) {
+        char[] charArray = string.toCharArray();
+        for (char c : charArray) {
+            if (charactersMap.containsKey(c)) {
                 continue;
             } else {
-                return null;
+                return false;
             }
         }
-        return charactersMap;
+        return true;
     }
 
     @Override
-    public HashMap<Character, Integer> getMap() {
-        return charactersMap;
+    public void put(String string) {
+        char[] charArray = string.toCharArray();
+        int defaultValue = 1;
+        for (int i = 0; i < charArray.length; i++) {
+            if (!charactersMap.containsKey(charArray[i])) {
+                charactersMap.put(charArray[i], defaultValue);
+            } else {
+                charactersMap.put(charArray[i], charactersMap.get(charArray[i]) + 1);
+            }
+        }
+    }
+
+    @Override
+    public Integer getMap(Character key) {
+        return charactersMap.get(key);
     }
 }
