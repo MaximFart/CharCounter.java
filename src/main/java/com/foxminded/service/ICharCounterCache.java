@@ -5,7 +5,7 @@ import java.util.HashMap;
 public interface ICharCounterCache {
 
     public boolean isCached(String string);
-    public Integer getMap(Character key);
+    public HashMap get(String string);
     public void put(String string);
 
 }

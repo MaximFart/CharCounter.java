@@ -3,43 +3,33 @@ package com.foxminded.service;
 import java.util.HashMap;
 
 public class CharCounterCache implements ICharCounterCache {
-    private HashMap<Character, Integer> charactersMap;
+    private HashMap<String, HashMap<Character, Integer>> cache;
 
     public CharCounterCache() {
-        this.charactersMap = new HashMap<>();
+        this.cache = new HashMap<>();
     }
 
     @Override
     public boolean isCached(String string) {
-        if (charactersMap.isEmpty()) {
-            return false;
-        }
-        char[] charArray = string.toCharArray();
-        for (char c : charArray) {
-            if (charactersMap.containsKey(c)) {
-                continue;
-            } else {
-                return false;
-            }
-        }
-        return true;
+        return cache.containsKey(string);
     }
 
     @Override
     public void put(String string) {
         char[] charArray = string.toCharArray();
         int defaultValue = 1;
+        cache.put(string, new HashMap<>());
         for (int i = 0; i < charArray.length; i++) {
-            if (!charactersMap.containsKey(charArray[i])) {
-                charactersMap.put(charArray[i], defaultValue);
+            if (!cache.get(string).containsKey(charArray[i])) {
+                cache.get(string).put(charArray[i], defaultValue);
             } else {
-                charactersMap.put(charArray[i], charactersMap.get(charArray[i]) + 1);
+                cache.get(string).put(charArray[i],cache.get(string).get(charArray[i]) + 1);
             }
         }
     }
 
     @Override
-    public Integer getMap(Character key) {
-        return charactersMap.get(key);
+    public HashMap<Character, Integer> get(String string) {
+        return cache.get(string);
     }
 }
