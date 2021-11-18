@@ -1,10 +1,6 @@
 package com.foxminded.service;
 
-
-
 import java.util.HashMap;
-import java.util.HashSet;
-
 
 public class CharCounter {
      private CharCounterCache cache;
