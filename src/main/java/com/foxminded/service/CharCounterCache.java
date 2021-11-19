@@ -15,17 +15,12 @@ public class CharCounterCache implements ICharCounterCache {
     }
 
     @Override
-    public void put(String string) {
-        char[] charArray = string.toCharArray();
-        int defaultValue = 1;
-        cache.put(string, new HashMap<>());
-        for (int i = 0; i < charArray.length; i++) {
-            if (!cache.get(string).containsKey(charArray[i])) {
-                cache.get(string).put(charArray[i], defaultValue);
-            } else {
-                cache.get(string).put(charArray[i],cache.get(string).get(charArray[i]) + 1);
-            }
+    public void put(String string, Character key, Integer value) {
+        if (!cache.containsKey(string)) {
+            cache.put(string, new HashMap<>());
         }
+        cache.get(string).put(key, value);
+
     }
 
     @Override
