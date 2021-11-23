@@ -18,9 +18,6 @@ public class CharCounter {
     }
 
     public HashMap<Character, Integer> readingCharacters(String string) {
-        if (!charCounter.isEmpty()) {
-            charCounter.clear();
-        }
         if (cache.isCached(string)) {
             return cache.get(string);
         } else {
