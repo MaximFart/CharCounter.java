@@ -12,6 +12,7 @@ public class Formatter {
     public Formatter(CharCounter counter) {
         this.counter = counter;
     }
+
     public void formattingOutput(String string) {
         if (string == null) {
             throw new NullPointerException("Incorrect input");
@@ -21,6 +22,4 @@ public class Formatter {
             System.out.println("\"" + entry.getKey() + "\"" + " - " + entry.getValue());
         }
     }
-
-
 }

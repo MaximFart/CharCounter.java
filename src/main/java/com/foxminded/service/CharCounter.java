@@ -8,6 +8,7 @@ public class CharCounter {
      private HashMap<Character, Integer> charCounter;
 
     public CharCounter() {
+        this.charCounter = new HashMap<>();
     }
 
     public CharCounter(CharCounterCache cache) {
@@ -17,24 +18,17 @@ public class CharCounter {
     }
 
     public HashMap<Character, Integer> readingCharacters(String string) {
-        if (string == null) {
-            throw new NullPointerException("Incorrect input");
-        }
         if (!charCounter.isEmpty()) {
             charCounter.clear();
         }
         if (cache.isCached(string)) {
             return cache.get(string);
         } else {
-
-            return counting(string);
+            return countingCharacters(string);
         }
     }
 
-    public HashMap<Character, Integer> counting(String string) {
-        if (string == null) {
-            throw new NullPointerException("Incorrect input");
-        }
+    public HashMap<Character, Integer> countingCharacters(String string) {
         char[] charArray = string.toCharArray();
         int defaultValue = 1;
         for (int i = 0; i < charArray.length; i++) {
