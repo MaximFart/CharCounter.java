@@ -1,5 +1,7 @@
-package com.foxminded.service;
+package com.foxminded.service.counter;
 
+import com.foxminded.service.cache.CharCounterCache;
+import com.foxminded.service.counter.CharCounter;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -35,5 +37,11 @@ class CharCounterTest {
     void countingCharactersTest(String str, HashMap<Character, Integer> map) {
         when(counterMock.countingCharacters(str)).thenReturn(map);
         assertEquals(counterMock.countingCharacters(str), counter.countingCharacters(str));
+    }
+
+    @Test
+    void readingCharactersTest() {
+        counter.readingCharacters("name");
+        assertTrue(counter.cache.isCached("name"));
     }
 }
