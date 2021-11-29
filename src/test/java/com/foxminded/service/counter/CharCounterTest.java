@@ -17,11 +17,11 @@ class CharCounterTest {
 
     @ParameterizedTest
     @MethodSource("parameters")
-    void stringInHashMap_shouldReturnHashMap_whenInputString(String str, HashMap<Character, Integer> map) {
+    void stringInHashMap_shouldReturnHashMap_whenInputString(String inputString, HashMap<Character, Integer> charCounter) {
         CountingCharacters counting = new CountingCharacters(new CharCounterCache());
         CountingCharacters countingMock = mock(CountingCharacters.class);
-        when(countingMock.countingCharacters(str)).thenReturn(map);
-        assertEquals(countingMock.countingCharacters(str), counting.countingCharacters(str));
+        when(countingMock.countingCharacters(inputString)).thenReturn(charCounter);
+        assertEquals(countingMock.countingCharacters(inputString), counting.countingCharacters(inputString));
     }
 
     @Test
