@@ -1,5 +1,7 @@
 package com.foxminded.service.cache;
 
+import com.foxminded.service.counter.CountingCharacters;
+
 import java.util.HashMap;
 
 public class CharCounterCache implements ICharCounterCache {
@@ -17,11 +19,13 @@ public class CharCounterCache implements ICharCounterCache {
 
     @Override
     public void put(String inputLine, Character key, Integer value) {
-        if (!cache.containsKey(inputLine)) {
-            cache.put(inputLine, new HashMap<>());
-        }
         cache.get(inputLine).put(key, value);
 
+    }
+
+    @Override
+    public HashMap<String, HashMap<Character, Integer>> getCache() {
+        return cache;
     }
 
     @Override

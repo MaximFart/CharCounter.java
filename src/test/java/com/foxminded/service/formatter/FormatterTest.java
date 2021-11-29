@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class FormatterTest {
     private final Formatter formatter = new Formatter(new CharCounter(new CharCounterCache()));
     @Test
-    void formattingOutputTest() {
+    void outputConsole_shouldReturnString_whenHashMapConvertToString() {
         String expected = "Hello world!\n" +
                 "\" \" - 1\n" +
                 "\"!\" - 1\n" +
