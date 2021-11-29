@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class FormatterTest {
+
     private final Formatter formatter = new Formatter(new CharCounter(new CharCounterCache()));
     @Test
     void outputConsole_shouldReturnString_whenHashMapConvertToString() {
@@ -27,6 +28,4 @@ class FormatterTest {
     void process_shouldThrowNullPointerException_whenInputNull() {
         assertThrows(NullPointerException.class, () -> formatter.formattingOutput(null));
     }
-
-
 }

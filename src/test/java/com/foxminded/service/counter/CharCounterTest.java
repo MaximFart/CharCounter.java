@@ -1,12 +1,10 @@
 package com.foxminded.service.counter;
 
 import com.foxminded.service.cache.CharCounterCache;
-import com.foxminded.service.counter.CharCounter;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.mockito.Mockito;
 
 
 import java.util.HashMap;
@@ -26,8 +24,6 @@ class CharCounterTest {
         assertEquals(countingMock.countingCharacters(str), counting.countingCharacters(str));
     }
 
-
-
     @Test
     void countCharactersInString_shouldUseCache_whenInputIsRepeated() {
         CharCounterCache cacheSpy = spy(new CharCounterCache());
@@ -43,14 +39,14 @@ class CharCounterTest {
             assertEquals(expectedOutput, actual);
         }
 
-        Mockito.verify(cacheSpy, times(1))
+        verify(cacheSpy, times(1))
                 .put(inputString, 'a', 2);
 
-        Mockito.verify(cacheSpy, times(numberOfCalls))
-                .isCached(Mockito.any());
+        verify(cacheSpy, times(numberOfCalls))
+                .isCached(any());
 
-        Mockito.verify(cacheSpy, times(numberOfCalls - 1))
-                .get(Mockito.any());
+        verify(cacheSpy, times(numberOfCalls - 1))
+                .get(any());
     }
 
     @Test

@@ -8,8 +8,5 @@ public class Main {
         CharCounter charCounter = new CharCounter(new CharCounterCache());
         Formatter format = new Formatter(charCounter);
         System.out.println(format.formattingOutput("Hello world!"));
-        System.out.println(format.formattingOutput("Hello world!"));
-        System.out.println(format.formattingOutput("a"));
-        System.out.println(format.formattingOutput("a"));
     }
 }

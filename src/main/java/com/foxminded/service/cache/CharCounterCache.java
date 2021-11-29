@@ -1,7 +1,5 @@
 package com.foxminded.service.cache;
 
-import com.foxminded.service.counter.CountingCharacters;
-
 import java.util.HashMap;
 
 public class CharCounterCache implements ICharCounterCache {

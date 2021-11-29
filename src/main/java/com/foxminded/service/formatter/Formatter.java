@@ -6,10 +6,7 @@ import java.util.Map;
 
 public class Formatter {
 
-    private CharCounter counter;
-
-    public Formatter() {
-    }
+    private final CharCounter counter;
 
     public Formatter(CharCounter counter) {
         this.counter = counter;
@@ -21,7 +18,7 @@ public class Formatter {
         }
         StringBuilder output = new StringBuilder();
         output.append(inputLine + "\n");
-        for (Map.Entry entry : counter.readingCharacters(inputLine).entrySet()) {
+        for (Map.Entry<Character, Integer> entry : counter.readingCharacters(inputLine).entrySet()) {
             output.append("\"" + entry.getKey() + "\"" + " - " + entry.getValue() + "\n");
         }
         return output.toString();

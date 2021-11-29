@@ -5,11 +5,8 @@ import com.foxminded.service.cache.CharCounterCache;
 import java.util.HashMap;
 
 public class CharCounter {
-     public CharCounterCache cache;
-     public CountingCharacters counting;
-
-    public CharCounter() {
-    }
+     private final CharCounterCache cache;
+     private final CountingCharacters counting;
 
     public CharCounter(CharCounterCache cache) {
         this.cache = cache;
